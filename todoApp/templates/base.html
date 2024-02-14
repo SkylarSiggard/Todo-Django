@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
-<body>
-    <h1>My Todo List</h1>
-    <form action="{% url 'add_todo' %}" method="POST"> {# registered in views.py #}
-        {% csrf_token %} {# Form Security #}
-        <label>Create a Todo:
-            <input type="text" name="todo_title" placeholder="Enter new todo">
-        </label>
-        <input type="submit" value="Add Todo">
-    </form>
-    {% block content %} {# The block is coming from list.html #}
-    {% endblock %}
+<body id="todo-list">
+<h1>My Todo List</h1>
+<form hx-post="{% url 'add_todo' %}" hx-trigger="submit" hx-target="#todo-list" method="POST">
+    {% csrf_token %}
+    <label>Create a Todo:
+        <input type="text" name="todo_title" placeholder="Enter new todo">
+    </label>
+    <input type="submit" value="Add Todo">
+</form>
+  {% block content %}
+  {% endblock %}
 </body>
 </html>

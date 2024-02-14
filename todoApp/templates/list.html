@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block content %} {# Creates a block that can be imported elsewhere #}
-    {% for todo in todos %} {# We need to wrap python with {%  %} #}
-        <form action="{% url 'update_todo' %}" method="POST"> {# registered in views.py #}
-            {% csrf_token %} {# Form Security #}
+{% block content %}
+    {% for todo in todos %}
+        <form hx-post="{% url 'update_todo' %}" hx-trigger="submit" hx-target="#todo-list" method="POST">
+            {% csrf_token %}
             <input type="hidden" name="todo_id" value="{{ todo.id }}">
             {% if todo.status %}
                 <span>{{ todo.title }} </span>
@@ -11,9 +11,9 @@
             {% else %}
                 <span>{{ todo.title }}</span>
                 <button type="submit">Complete</button>
-            {% endif %}  {# we need to exit the if statement #}
+            {% endif %}
         </form>
     {% empty %}
         <p>No tasks created</p>
-    {% endfor %} {# we need to exit the for loop #}
-{% endblock %} {# we need to exit the block #}
+    {% endfor %}
+{% endblock %}

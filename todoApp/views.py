@@ -16,6 +16,8 @@ def add_todo(request):  # See the form in base.html
         title = request.POST.get('todo_title')
         if title:
             Todo.objects.create(title=title, status=False)
+        else:
+            return todo_list(request)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 

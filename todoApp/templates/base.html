@@ -5,7 +5,8 @@
     <title>Todo</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
-<body id="todo-list">
+<body>
+<div id="todo-list">
 <h1>My Todo List</h1>
 <form hx-post="{% url 'add_todo' %}" hx-trigger="submit" hx-target="#todo-list" method="POST">
     {% csrf_token %}
@@ -16,5 +17,6 @@
 </form>
   {% block content %}
   {% endblock %}
+</div>
 </body>
 </html>

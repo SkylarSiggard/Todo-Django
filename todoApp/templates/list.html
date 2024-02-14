@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    {% for todo in todos %}
-        <form action="{% url 'update_todo' %}" method="POST">
-            {% csrf_token %}
+{% block content %} {# Creates a block that can be imported elsewhere #}
+    {% for todo in todos %} {# We need to wrap python with {%  %} #}
+        <form action="{% url 'update_todo' %}" method="POST"> {# registered in views.py #}
+            {% csrf_token %} {# Form Security #}
             <input type="hidden" name="todo_id" value="{{ todo.id }}">
             {% if todo.status %}
                 <span>{{ todo.title }} </span>
@@ -11,9 +11,9 @@
             {% else %}
                 <span>{{ todo.title }}</span>
                 <button type="submit">Complete</button>
-            {% endif %}
+            {% endif %}  {# we need to exit the if statement #}
         </form>
     {% empty %}
-        <p>No tasks available</p>
-    {% endfor %}
-{% endblock %}
+        <p>No tasks created</p>
+    {% endfor %} {# we need to exit the for loop #}
+{% endblock %} {# we need to exit the block #}

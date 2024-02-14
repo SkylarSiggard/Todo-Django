@@ -5,13 +5,15 @@
     <title>Todo</title>
 </head>
 <body>
-    <h1>Todo</h1>
-    <form action="{% url 'add_todo' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="todo_title" placeholder="Enter new todo">
+    <h1>My Todo List</h1>
+    <form action="{% url 'add_todo' %}" method="POST"> {# registered in views.py #}
+        {% csrf_token %} {# Form Security #}
+        <label>Create a Todo:
+            <input type="text" name="todo_title" placeholder="Enter new todo">
+        </label>
         <input type="submit" value="Add Todo">
     </form>
-    {% block content %}
+    {% block content %} {# The block is coming from list.html #}
     {% endblock %}
 </body>
 </html>

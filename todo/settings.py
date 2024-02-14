@@ -8,11 +8,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# We need to add all applications inorder to install the app
+# All the other items in this list are needed for Django.
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',  # This one can be deleted.
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todoApp'
@@ -49,6 +51,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
+# Connecting to the Postgres DB running on the Docker Container.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

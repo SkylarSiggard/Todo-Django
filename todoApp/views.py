@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from .models import Todo
 
+
 def add_todo(request):
     if request.method == "POST":
         title = request.POST.get('todo_title')
